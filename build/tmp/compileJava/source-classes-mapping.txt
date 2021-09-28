@@ -1,0 +1,8 @@
+com/solution/SolutionApp.java
+ com.solution.SolutionApp
+com/solution/model/supplier/Supplier.java
+ com.solution.model.supplier.Supplier
+com/solution/model/barcode/Barcode.java
+ com.solution.model.barcode.Barcode
+com/solution/model/catalog/Catalog.java
+ com.solution.model.catalog.Catalog
