@@ -1,8 +1,0 @@
-com/solution/SolutionApp_UnitTest.java
- com.solution.SolutionApp_UnitTest
-com/solution/model/barcode/Barcode_UnitTest.java
- com.solution.model.barcode.Barcode_UnitTest
-com/solution/model/supplier/Supplier_UnitTest.java
- com.solution.model.supplier.Supplier_UnitTest
-com/solution/model/catalog/Catalog_UnitTest.java
- com.solution.model.catalog.Catalog_UnitTest

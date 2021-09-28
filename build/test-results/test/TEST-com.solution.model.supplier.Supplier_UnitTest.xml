@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.solution.model.supplier.Supplier_UnitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-09-28T12:53:55" hostname="Lewiss-MBP-M1-2.modem" time="0.031">
-  <properties/>
-  <testcase name="getName()" classname="com.solution.model.supplier.Supplier_UnitTest" time="0.026"/>
-  <testcase name="getId()" classname="com.solution.model.supplier.Supplier_UnitTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
