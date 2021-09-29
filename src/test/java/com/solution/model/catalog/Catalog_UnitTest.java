@@ -9,15 +9,15 @@ class Catalog_UnitTest {
 	private final String sku = "sku_test";
 	private final String description = "description_test";
 
-	Catalog oCatalog = new Catalog(sku, description);
+	Catalog catalog = new Catalog(sku, description);
 
 	@Test
 	void testMethod_getSku() {
-		assertEquals(sku, oCatalog.getSku());
+		assertEquals(sku, catalog.getSku());
 	}
 
 	@Test
 	void testMethod_getDescription() {
-		assertEquals(description, oCatalog.getDescription());
+		assertEquals(description, catalog.getDescription());
 	}
 }

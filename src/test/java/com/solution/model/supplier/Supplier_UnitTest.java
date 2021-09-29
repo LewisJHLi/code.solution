@@ -9,15 +9,15 @@ class Supplier_UnitTest {
 	private final String id = "test_id";
 	private final String name = "test_name";
 
-	Supplier oSupplier = new Supplier(id, name);
+	Supplier supplier = new Supplier(id, name);
 
 	@Test
 	void testMethod_getId() {
-		assertEquals(id, oSupplier.getId());
+		assertEquals(id, supplier.getId());
 	}
 
 	@Test
 	void testMethod_getName() {
-		assertEquals(name, oSupplier.getName());
+		assertEquals(name, supplier.getName());
 	}
 }
