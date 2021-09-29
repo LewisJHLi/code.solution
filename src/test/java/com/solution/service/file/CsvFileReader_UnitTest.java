@@ -26,6 +26,9 @@ class CsvFileReader_UnitTest {
 		assertNotNull(CsvFileReader.builder());
 	}
 
+	/**
+	 * Execute the tests against the readFile method.
+	 */
 	@Test
 	void testMethod_readFile_ensureFileReaderIsReading() throws Exception {
 		CsvFileReader csvFileReader = new CsvFileReader();
@@ -35,18 +38,11 @@ class CsvFileReader_UnitTest {
 		int count = (int) lines.count();
 		testReader.close();
 
-		assertEquals(count, csvFileReader.readFile(correctPath).size());
-	}
-
-	@Test
-	void testMethod_readFile_ensureIncorrectPathHasException() {
-		CsvFileReader csvFileReader = new CsvFileReader();
-
 		Exception exception = assertThrows(FileNotFoundException.class, () -> csvFileReader.readFile(incorrectPath));
+		String expectedMsg = "File was not found.";
+		String actualMsg = exception.getMessage();
 
-		String expected = "File was not found.";
-		String actual = exception.getMessage();
-
-		assertTrue(actual.contains(expected));
+		assertEquals(count, csvFileReader.readFile(correctPath).size());
+		assertTrue(actualMsg.contains(expectedMsg));
 	}
 }

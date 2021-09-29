@@ -3,7 +3,6 @@ package com.solution.service.file;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,12 +16,19 @@ public class CsvFileReader {
 	public CsvFileReader() {
 	}
 
+	/**
+	 * Returns a new builder that is capable of producing a {@link CsvFileReader} instance.
+	 *
+	 * @return CsvFileReader Builder class.
+	 */
 	public static CsvFileReader builder() {
 		return new CsvFileReader();
 	}
 
+	/*
+	* Returns the csv file contents with given file path.
+	* */
 	public List<String[]> readFile(String path) throws Exception {
-
 		try(
 				BufferedReader csvFile = new BufferedReader(new FileReader(Paths.get(path).normalize().toAbsolutePath().toString()))
 		) {
