@@ -17,10 +17,23 @@ public class CsvFileWriter {
 	public CsvFileWriter() {
 	}
 
+	/**
+	 * Returns a new builder that is capable of producing a {@link CsvFileWriter} instance.
+	 *
+	 * @return CsvFileWriter Builder class.
+	 */
 	public static CsvFileWriter builder(){
 		return new CsvFileWriter();
 	}
 
+	/**
+	 * Create the csv file output file.
+	 *
+	 * @param csvOutputs
+	 *      Output data.
+	 * @param fileName
+	 *      Filename for output csv.
+	 */
 	public void writeFile(List<CsvOutput> csvOutputs, String fileName) throws Exception {
 		try(
 				FileWriter csvWriter = new FileWriter(Paths.get(OUTPUT_PATH + fileName).normalize().toAbsolutePath().toString())

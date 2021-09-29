@@ -25,6 +25,14 @@ public class CsvFileReader {
 		return new CsvFileReader();
 	}
 
+	/**
+	 * Returns the csv file contents with given file path.
+	 *
+	 * @param path
+	 *      Path to the input dir.
+	 *
+	 * @return List of file data.
+	 */
 	/*
 	* Returns the csv file contents with given file path.
 	* */
