@@ -12,12 +12,12 @@ class Supplier_UnitTest {
 	Supplier oSupplier = new Supplier(id, name);
 
 	@Test
-	void getId() {
+	void testMethod_getId() {
 		assertEquals(id, oSupplier.getId());
 	}
 
 	@Test
-	void getName() {
+	void testMethod_getName() {
 		assertEquals(name, oSupplier.getName());
 	}
 }

@@ -12,17 +12,17 @@ class Barcode_UnitTest {
 	Barcode oBarcode = new Barcode(supplierID, sku, barcode);
 
 	@Test
-	void getSupplierId() {
+	void testMethod_getSupplierId() {
 		assertEquals(supplierID, oBarcode.getSupplierId());
 	}
 
 	@Test
-	void getSku() {
+	void testMethod_getSku() {
 		assertEquals(sku, oBarcode.getSku());
 	}
 
 	@Test
-	void getBarcode() {
+	void testMethod_getBarcode() {
 		assertEquals(barcode,oBarcode.getBarcode());
 	}
 }

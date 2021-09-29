@@ -12,12 +12,12 @@ class Catalog_UnitTest {
 	Catalog oCatalog = new Catalog(sku, description);
 
 	@Test
-	void getSku() {
+	void testMethod_getSku() {
 		assertEquals(sku, oCatalog.getSku());
 	}
 
 	@Test
-	void getDescription() {
+	void testMethod_getDescription() {
 		assertEquals(description, oCatalog.getDescription());
 	}
 }
