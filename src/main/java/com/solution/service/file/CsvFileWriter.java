@@ -1,12 +1,15 @@
 package com.solution.service.file;
 
+import com.solution.model.CsvOutput;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class CsvFileWriter {
 
-	public static final String OUTPUT_PATH = "./output/result.csv";
+	public static final String OUTPUT_PATH = "./output/";
 
 	/**
 	 * Default Constructor.
@@ -18,9 +21,9 @@ public class CsvFileWriter {
 		return new CsvFileWriter();
 	}
 
-	public void writeFile() throws Exception {
+	public void writeFile(List<CsvOutput> csvOutputs, String fileName) throws Exception {
 		try(
-				FileWriter csvWriter = new FileWriter(Paths.get(OUTPUT_PATH).normalize().toAbsolutePath().toString())
+				FileWriter csvWriter = new FileWriter(Paths.get(OUTPUT_PATH + fileName).normalize().toAbsolutePath().toString())
 		) {
 			csvWriter.append("SKU");
 			csvWriter.append(",");
@@ -29,12 +32,14 @@ public class CsvFileWriter {
 			csvWriter.append("Source");
 			csvWriter.append("\n");
 
-			csvWriter.append("this SKU test");
-			csvWriter.append(",");
-			csvWriter.append("this Description test");
-			csvWriter.append(",");
-			csvWriter.append("this Source test");
-			csvWriter.append("\n");
+			for (CsvOutput line : csvOutputs) {
+				csvWriter.append(line.getSku());
+				csvWriter.append(",");
+				csvWriter.append(line.getDescription());
+				csvWriter.append(",");
+				csvWriter.append(line.getSource());
+				csvWriter.append("\n");
+			}
 
 			csvWriter.flush();
 
