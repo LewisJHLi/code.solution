@@ -7,6 +7,7 @@ import com.solution.model.catalog.Catalog;
 import com.solution.model.supplier.Supplier;
 import com.solution.service.file.CsvFileReader;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +22,6 @@ public class DataCleaner {
 	 */
 	public DataCleaner() {
 		this.csvFileReader = CsvFileReader.builder();
-	}
-
-	public DataCleaner(final CsvFileReader csvFileReader) {
-		this.csvFileReader = csvFileReader;
 	}
 
 	/**
@@ -67,10 +64,10 @@ public class DataCleaner {
 							.map(row -> new Supplier(row[0], row[1]))
 							.collect(Collectors.toList());
 				} else {
-					throw new Exception("Cannot find file \"" + file + "\". Please refer to the read me for more info.");
+					throw new FileNotFoundException("Cannot find file \"" + file + "\". Please refer to the read me for more info.");
 				}
 			} else {
-				throw new Exception("no records found for file" + file);
+				throw new FileNotFoundException("no records found for file" + file);
 			}
 		}
 
