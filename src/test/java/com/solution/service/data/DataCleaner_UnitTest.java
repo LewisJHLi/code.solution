@@ -111,6 +111,8 @@ class DataCleaner_UnitTest {
 		barcodeFile.add(barLine2);
 		String[] barLine3 = {"111", "aaa", "third"};
 		barcodeFile.add(barLine3);
+		String[] barLine4 = {"444", "rrr", "last"};
+		barcodeFile.add(barLine4);
 		final String barcodeTestCsv = INPUT_DIR + "barcodes" + company + ".csv";
 
 		List<String[]> supplierFile = new ArrayList<>();
@@ -135,11 +137,18 @@ class DataCleaner_UnitTest {
 				.stream()
 				.filter(rec -> rec.getCatalog().getSku().equalsIgnoreCase("aaa"))
 				.collect(Collectors.toList());
-		System.out.println(records);
 
 		assertEquals(2, records.size());
 		assertEquals("sup A", records.get(0).getSupplier().getName());
 		assertEquals("sup A", records.get(1).getSupplier().getName());
+
+		List<Record> secRecords = companyResource.getRecords()
+				.stream()
+				.filter(rec -> rec.getCatalog().getSku().equalsIgnoreCase("bbb"))
+				.collect(Collectors.toList());
+
+		assertEquals(1, secRecords.size());
+		assertEquals("sup B", secRecords.get(0).getSupplier().getName());
 	}
 
 	/**
