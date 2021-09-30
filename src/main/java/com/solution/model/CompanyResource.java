@@ -8,10 +8,12 @@ public class CompanyResource {
 
 	private final String company;
 	private final List<Catalog> catalogs;
+	private final List<Record> records;
 
-	public CompanyResource(final String company, final List<Catalog> catalogs) {
+	public CompanyResource(final String company, final List<Catalog> catalogs, final List<Record> records) {
 		this.company = company;
 		this.catalogs = catalogs;
+		this.records = records;
 	}
 
 	public String getCompany() {
@@ -20,5 +22,9 @@ public class CompanyResource {
 
 	public List<Catalog> getCatalogs() {
 		return catalogs;
+	}
+
+	public List<Record> getRecords() {
+		return records;
 	}
 }
