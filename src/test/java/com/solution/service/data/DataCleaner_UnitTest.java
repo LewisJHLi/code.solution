@@ -30,6 +30,9 @@ class DataCleaner_UnitTest {
 		this.dataCleaner = new DataCleaner();
 	}
 
+	/**
+	 * Test for valid file path and company name.
+	 */
 	@Test
 	void testMethod_getCleanData_validPath() throws Exception {
 		final String company = "A";
@@ -38,6 +41,9 @@ class DataCleaner_UnitTest {
 		assertEquals(CompanyResource.class, this.dataCleaner.getCleanData(company, files).getClass());
 	}
 
+	/**
+	 * Test for invalid file path. Should throw exceptions.
+	 */
 	@Test
 	void testMethod_getCleanData_invalidFilePath() {
 		final String company = "A";
@@ -50,6 +56,9 @@ class DataCleaner_UnitTest {
 		assertTrue(actualMsg.contains(expectedMsg));
 	}
 
+	/**
+	 * Test for invalid file names. Should throw exceptions.
+	 */
 	@Test
 	void testMethod_getCleanData_invalidFileName() {
 		final String company = "A";
@@ -62,6 +71,9 @@ class DataCleaner_UnitTest {
 		assertTrue(actualMsg.contains(expectedMsg));
 	}
 
+	/**
+	 * Test for invalid company name. Should throw exceptions.
+	 */
 	@Test
 	void testMethod_getCleanData_invalidCompanyName() {
 		final String company = "test_A";
@@ -74,6 +86,9 @@ class DataCleaner_UnitTest {
 		assertTrue(actualMsg.contains(expectedMsg));
 	}
 
+	/**
+	 * Test for valid parameters.
+	 */
 	@Test
 	void testMethod_getCleanData_validParams() throws Exception {
 		final String company = "_test";
@@ -121,13 +136,19 @@ class DataCleaner_UnitTest {
 				.filter(rec -> rec.getCatalog().getSku().equalsIgnoreCase("aaa"))
 				.collect(Collectors.toList());
 		System.out.println(records);
-//		System.out.println(companyResource.getRecords());
 
 		assertEquals(2, records.size());
 		assertEquals("sup A", records.get(0).getSupplier().getName());
 		assertEquals("sup A", records.get(1).getSupplier().getName());
 	}
 
+	/**
+	 * Create csv test files.
+	 * @param filename
+	 *      File name for csv.
+	 * @param files
+	 *      File contents.
+	 */
 	private void createFile(String filename, List<String[]> files) throws Exception {
 		try(
 				FileWriter csvWriter = new FileWriter(Paths.get(filename).normalize().toAbsolutePath().toString())
