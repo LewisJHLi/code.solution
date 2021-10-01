@@ -2,13 +2,11 @@ package com.solution.service.data;
 
 import com.solution.model.CompanyResource;
 import com.solution.model.Record;
+import com.solution.service.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -124,9 +122,9 @@ class DataCleaner_UnitTest {
 		supplierFile.add(supLine2);
 		final String supplierTestCsv = INPUT_DIR + "suppliers" + company + ".csv";
 
-		this.createFile(catalogTestCsv, catalogFile);
-		this.createFile(barcodeTestCsv, barcodeFile);
-		this.createFile(supplierTestCsv, supplierFile);
+		Utils.createFile(catalogTestCsv, catalogFile);
+		Utils.createFile(barcodeTestCsv, barcodeFile);
+		Utils.createFile(supplierTestCsv, supplierFile);
 
 		List<String> files = Arrays.asList(catalogTestCsv, barcodeTestCsv, supplierTestCsv);
 		CompanyResource companyResource = this.dataCleaner.getCleanData(company, files);
@@ -149,32 +147,5 @@ class DataCleaner_UnitTest {
 
 		assertEquals(1, secRecords.size());
 		assertEquals("sup B", secRecords.get(0).getSupplier().getName());
-	}
-
-	/**
-	 * Create csv test files.
-	 * @param filename
-	 *      File name for csv.
-	 * @param files
-	 *      File contents.
-	 */
-	private void createFile(String filename, List<String[]> files) throws Exception {
-		try(
-				FileWriter csvWriter = new FileWriter(Paths.get(filename).normalize().toAbsolutePath().toString())
-		) {
-
-			for(String[] line : files) {
-				String data = Arrays.toString(line)
-						.replace("[", "")
-						.replace("]", "")
-						.replace(", ", ",");
-				csvWriter.append(data);
-				csvWriter.append("\n");
-			}
-
-			csvWriter.flush();
-		} catch (IOException e) {
-			throw new Exception("Unable to create test csv file " + filename + ". Error: " + e.getMessage());
-		}
 	}
 }
