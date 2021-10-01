@@ -12,7 +12,7 @@ The test coverage is about 90%.
 
 ## Step to run
 1. cd into code.solution dir
-2. Add input files into the input dir
+2. Add input files into the input dir if not there
 3. ```bash gradle clean build ``` to run the unit tests and build jar file (test created files will be located in input and output dir)
 4. ```bash java -jar build/libs/code.solution-1.0.jar ``` to execute the jar
 5. "result_output.csv" should be located in the output dir
