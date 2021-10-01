@@ -28,7 +28,7 @@ class CsvFileWriter_UnitTest {
 	@Test
 	void testMethod_writeFile_ensureOutputFileIsCreated() throws Exception {
 		final String path = "./output/";
-		final String file = "result_output.csv";
+		final String file = "test_output.csv";
 
 		CsvFileWriter csvFileWriter = new CsvFileWriter();
 
