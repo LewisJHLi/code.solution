@@ -55,14 +55,17 @@ public class DataCleaner {
 					rawCatalogs = fileData.stream()
 							.map(row -> new Catalog(row[0], row[1]))
 							.collect(Collectors.toList());
+					rawCatalogs.remove(0);
 				} else if (file.equalsIgnoreCase(INPUT_DIR + "barcodes" + withCompany + ".csv")) {
 					rawBarcodes = fileData.stream()
 							.map(row -> new Barcode(row[0], row[1], row[2]))
 							.collect(Collectors.toList());
+					rawBarcodes.remove(0);
 				} else if (file.equalsIgnoreCase(INPUT_DIR + "suppliers" + withCompany + ".csv")) {
 					rawSuppliers = fileData.stream()
 							.map(row -> new Supplier(row[0], row[1]))
 							.collect(Collectors.toList());
+					rawSuppliers.remove(0);
 				} else {
 					throw new FileNotFoundException("Cannot find file \"" + file + "\". Please refer to the read me for more info.");
 				}
@@ -108,7 +111,7 @@ public class DataCleaner {
 				Supplier connectSupplier = optSupplier.get();
 
 				cleanCatalog.add(connectCatalog);
-				cleanRecord.add(new Record(connectCatalog, connectBarcode, connectSupplier));
+				cleanRecord.add(new Record(connectCatalog, connectBarcode.getBarcode(), connectSupplier));
 			}
 		}
 		return new CompanyResource(withCompany, cleanCatalog, cleanRecord);
