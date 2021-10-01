@@ -50,6 +50,8 @@ public class DataCleaner {
 
 		for (String file : files) {
 			List<String[]> fileData = this.csvFileReader.readFile(file);
+
+			// Map data from files to objects and remove headers.
 			if (fileData.size() > 0) {
 				if (file.equalsIgnoreCase(INPUT_DIR + "catalog" + withCompany + ".csv")) {
 					rawCatalogs = fileData.stream()
@@ -95,6 +97,7 @@ public class DataCleaner {
 		final List<Catalog> cleanCatalog = new ArrayList<>();
 		final List<Record> cleanRecord = new ArrayList<>();
 
+		// Retrieve connected records based on the SKU and SupplierId from Barcodes.
 		for(Barcode connectBarcode:rawBarcodes) {
 			String barcodeSku = connectBarcode.getSku();
 			String barcodeSupplierId = connectBarcode.getSupplierId();
@@ -110,7 +113,10 @@ public class DataCleaner {
 				Catalog connectCatalog = optCatalog.get();
 				Supplier connectSupplier = optSupplier.get();
 
+				// Store the found catalogs in company resources.
 				cleanCatalog.add(connectCatalog);
+
+				// Store the found records in company resources.
 				cleanRecord.add(new Record(connectCatalog, connectBarcode.getBarcode(), connectSupplier));
 			}
 		}

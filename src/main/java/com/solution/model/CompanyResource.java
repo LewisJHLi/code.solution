@@ -7,7 +7,14 @@ import java.util.List;
 public class CompanyResource {
 
 	private final String company;
+	/**
+	 * Catalogs belong to the company
+	 */
 	private final List<Catalog> catalogs;
+
+	/**
+	 * List of complete records for the product.
+	 */
 	private final List<Record> records;
 
 	public CompanyResource(final String company, final List<Catalog> catalogs, final List<Record> records) {

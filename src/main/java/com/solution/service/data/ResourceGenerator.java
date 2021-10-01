@@ -46,6 +46,7 @@ public class ResourceGenerator {
 		try {
 			Iterator<Map.Entry<String, List<String>>> companyFiles = this.getCompanyAndFiles(companies).entrySet().iterator();
 
+			// Create resources from the input files.
 			CompanyResource headquarterResource = this.getResources(companyFiles.next());
 			CompanyResource mergedResource = this.getResources(companyFiles.next());
 
@@ -55,23 +56,35 @@ public class ResourceGenerator {
 		}
 	}
 
+	/**
+	 * @param headquarterResource
+	 *      Resources from the headquarter.
+	 * @param mergedResource
+	 *      Resources from the merged company
+	 * @return
+	 *      A list of csv output data.
+	 */
 	private List<CsvOutput> getCsvOutputs(CompanyResource headquarterResource, CompanyResource mergedResource){
 		List<Record> headquarterRecords = headquarterResource.getRecords();
 		List<Record> mergedRecords = mergedResource.getRecords();
 
+		// Resources only owned by the headquarter company.
 		List<Record> uniqueHeadquarterRecords= headquarterRecords
 				.stream()
 				.filter(unique ->  !mergedRecords.contains(unique))
 				.collect(Collectors.toList());
+		// Resources by the both companies.
 		List<Record> shareRecords = headquarterRecords
 				.stream()
 				.filter(mergedRecords::contains)
 				.collect(Collectors.toList());
+		// Resources only owned by the merged company.
 		List<Record> uniqueMergedRecords = mergedRecords
 				.stream()
 				.filter(unique ->  !headquarterRecords.contains(unique))
 				.collect(Collectors.toList());
 
+		// Add all found resources into the csv output.
 		Set<CsvOutput> csvOutputs = new HashSet<>();
 		csvOutputs.addAll(uniqueHeadquarterRecords.stream()
 				.map(record -> new CsvOutput(record.getCatalog().getSku(),

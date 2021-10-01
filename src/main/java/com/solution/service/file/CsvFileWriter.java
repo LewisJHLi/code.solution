@@ -38,20 +38,14 @@ public class CsvFileWriter {
 		try(
 				FileWriter csvWriter = new FileWriter(Paths.get(OUTPUT_PATH + fileName).normalize().toAbsolutePath().toString())
 		) {
-			csvWriter.append("SKU");
-			csvWriter.append(",");
-			csvWriter.append("Description");
-			csvWriter.append(",");
-			csvWriter.append("Source");
-			csvWriter.append("\n");
-
+			csvWriter.append("SKU,Description,Source\n");
 			for (CsvOutput line : csvOutputs) {
-				csvWriter.append(line.getSku());
-				csvWriter.append(",");
-				csvWriter.append(line.getDescription());
-				csvWriter.append(",");
-				csvWriter.append(line.getSource());
-				csvWriter.append("\n");
+				csvWriter.append(line.getSku())
+						.append(",")
+						.append(line.getDescription())
+						.append(",")
+						.append(line.getSource())
+						.append("\n");
 			}
 
 			csvWriter.flush();

@@ -28,6 +28,9 @@ public class CsvOutput {
 		return source;
 	}
 
+	/**
+	 * Make sure the entry cannot be duplicated.
+	 */
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) { return true; }
