@@ -44,18 +44,10 @@ public class ResourceGenerator {
 	 */
 	public List<CsvOutput> generate(Map<String, String> companies) throws Exception {
 		try {
-//			List<String> companies = new ArrayList<>();
-//			companies.add(HEADQUARTER_NAME);
-//			companies.add(MERGED_NAME);
-
 			Iterator<Map.Entry<String, List<String>>> companyFiles = this.getCompanyAndFiles(companies).entrySet().iterator();
 
 			CompanyResource headquarterResource = this.getResources(companyFiles.next());
 			CompanyResource mergedResource = this.getResources(companyFiles.next());
-
-			System.out.println("Start");
-//			System.out.println(headquarterResource);
-//			System.out.println(mergedResource);
 
 			return getCsvOutputs(headquarterResource, mergedResource);
 		} catch (Exception e) {
@@ -66,12 +58,6 @@ public class ResourceGenerator {
 	private List<CsvOutput> getCsvOutputs(CompanyResource headquarterResource, CompanyResource mergedResource){
 		List<Record> headquarterRecords = headquarterResource.getRecords();
 		List<Record> mergedRecords = mergedResource.getRecords();
-
-		System.out.println(headquarterRecords.size());
-//		System.out.println(headquarterRecords);
-		System.out.println(mergedRecords.size());
-//		System.out.println(mergedRecords);
-		System.out.println("oops");
 
 		List<Record> uniqueHeadquarterRecords= headquarterRecords
 				.stream()
@@ -85,13 +71,6 @@ public class ResourceGenerator {
 				.stream()
 				.filter(unique ->  !headquarterRecords.contains(unique))
 				.collect(Collectors.toList());
-
-		System.out.println(uniqueHeadquarterRecords);
-		System.out.println(uniqueHeadquarterRecords.size());
-		System.out.println(shareRecords);
-		System.out.println(shareRecords.size());
-		System.out.println(uniqueMergedRecords);
-		System.out.println(uniqueMergedRecords.size());
 
 		Set<CsvOutput> csvOutputs = new HashSet<>();
 		csvOutputs.addAll(uniqueHeadquarterRecords.stream()
