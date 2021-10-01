@@ -1,41 +1,31 @@
 package com.solution;
 
 import com.solution.model.CsvOutput;
-import com.solution.service.file.CsvFileReader;
+import com.solution.service.data.ResourceGenerator;
 import com.solution.service.file.CsvFileWriter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SolutionApp {
 
-	static CsvFileReader csvFileReader = new CsvFileReader();
+	static ResourceGenerator resourceGenerator = new ResourceGenerator();
 	static CsvFileWriter csvFileWriter = new CsvFileWriter();
+
+	private static final String HEADQUARTER_NAME = "A";
+	private static final String MERGED_NAME = "B";
+	private static String OUTPUT_FILE = "result_output.csv";
 
 	/*
 	* Main method to run the solution and get output.
 	* */
 	public static void main(String[] args) throws Exception {
-		System.out.println("this is main app");
+		Map<String, String> companies = new LinkedHashMap<>();
+		companies.put("headquarter", HEADQUARTER_NAME);
+		companies.put("merged", MERGED_NAME);
 
-		String inputPath = "./input/catalogA.csv";
-		for (String[] lines : csvFileReader.readFile(inputPath)) {
-			System.out.println(Arrays.toString(lines));
-		}
-
-		String outputPath = "./output/";
-		String outputFile = "result_output.csv";
-
-		List<CsvOutput> csvOutputs = new ArrayList<>();
-		CsvOutput csvOutput1 = new CsvOutput("this is sku", "this is description", "this is source");
-		CsvOutput csvOutput2 = new CsvOutput("new sku", "new description", "new source");
-		csvOutputs.add(csvOutput1);
-		csvOutputs.add(csvOutput2);
-		csvFileWriter.writeFile(csvOutputs, outputFile);
-
-		for (String[] lines : csvFileReader.readFile(outputPath + outputFile)) {
-			System.out.println(Arrays.toString(lines));
-		}
+		List<CsvOutput> csvOutputs = resourceGenerator.generate(companies);
+		csvFileWriter.writeFile(csvOutputs, OUTPUT_FILE);
 	}
 }
