@@ -1,6 +1,5 @@
 package com.solution.model;
 
-import com.solution.model.barcode.Barcode;
 import com.solution.model.catalog.Catalog;
 import com.solution.model.supplier.Supplier;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,6 @@ class CompanyResource_UnitTest {
 		catalogs.add(new Catalog("test_sku_B", "test_description_B"));
 
 		CompanyResource resource = new CompanyResource(company, catalogs, records);
-
 		assertEquals(catalogs.size(), resource.getCatalogs().size());
 	}
 
@@ -41,9 +39,8 @@ class CompanyResource_UnitTest {
 		final List<Catalog> catalogs = new ArrayList<>();
 		final List<Record> records = new ArrayList<>();
 		final Catalog catalog = new Catalog("test_sku", "test_description");
-		final Barcode barcode = new Barcode("test_supplierId", "test_sku", "test_barcode");
 		final Supplier supplier = new Supplier("test_supplierId", "test_name");
-		records.add(new Record(catalog, barcode, supplier));
+		records.add(new Record(catalog, "new barcode", supplier));
 
 		CompanyResource resource = new CompanyResource(company, catalogs, records);
 
