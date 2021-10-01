@@ -94,7 +94,6 @@ public class DataCleaner {
 	 *      A {@link CompanyResource} instance with clean data.
 	 */
 	private CompanyResource cleanRawData(String withCompany, List<Catalog> rawCatalogs, List<Barcode> rawBarcodes, List<Supplier> rawSuppliers) {
-		final List<Catalog> cleanCatalog = new ArrayList<>();
 		final List<Record> cleanRecord = new ArrayList<>();
 
 		// Retrieve connected records based on the SKU and SupplierId from Barcodes.
@@ -113,13 +112,10 @@ public class DataCleaner {
 				Catalog connectCatalog = optCatalog.get();
 				Supplier connectSupplier = optSupplier.get();
 
-				// Store the found catalogs in company resources.
-				cleanCatalog.add(connectCatalog);
-
 				// Store the found records in company resources.
 				cleanRecord.add(new Record(connectCatalog, connectBarcode.getBarcode(), connectSupplier));
 			}
 		}
-		return new CompanyResource(withCompany, cleanCatalog, cleanRecord);
+		return new CompanyResource(withCompany, cleanRecord);
 	}
 }
