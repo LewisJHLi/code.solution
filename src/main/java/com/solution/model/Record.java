@@ -36,9 +36,7 @@ public class Record {
 		if (this == o) { return true; }
 		if (o == null || getClass() != o.getClass()) { return false; }
 		final Record record = (Record) o;
-		return Objects.equals(catalog.getSku(), record.catalog.getSku()) &&
-				Objects.equals(barcode, record.barcode) &&
-				Objects.equals(supplier.getId(), record.supplier.getId());
+		return Objects.equals(barcode, record.barcode);
 	}
 
 	@Override
