@@ -2,8 +2,10 @@ package com.solution.service.file;
 
 import com.solution.model.CsvOutput;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -35,6 +37,11 @@ public class CsvFileWriter {
 	 *      Filename for output csv.
 	 */
 	public void writeFile(List<CsvOutput> csvOutputs, String fileName) throws Exception {
+		File outputDir = new File(Paths.get(OUTPUT_PATH).normalize().toAbsolutePath().toString());
+		if(!outputDir.exists()) {
+			Files.createDirectories(Paths.get(OUTPUT_PATH).normalize().toAbsolutePath());
+		}
+
 		try(
 				FileWriter csvWriter = new FileWriter(Paths.get(OUTPUT_PATH + fileName).normalize().toAbsolutePath().toString())
 		) {
